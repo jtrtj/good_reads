@@ -3,8 +3,8 @@ require 'rails_helper'
 describe 'visitor' do
   context 'visiting books index' do
     it 'will see a list of all books and their titles will be links to show pages' do
-      bk_1 = Book.new(title: 'sdfg')
-      bk_2 = Book.new(title: 'hgfd')
+      bk_1 = Book.create(title: 'sdfg')
+      bk_2 = Book.create(title: 'hgfd')
 
       visit books_path
 
