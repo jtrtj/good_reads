@@ -26,8 +26,8 @@ describe 'visitor' do
       visit book_path(bk_1)
 
       expect(page).to have_content(bk_1.title)
-      expect(page).to have_content(review.user.id)
-      expect(page).to have_content(review.body)
+      expect(page).to have_content("User: #{review.user.name}")
+      expect(page).to have_content("Review: #{review.body}")
     end
   end
 end
