@@ -16,11 +16,25 @@ describe 'visitor' do
       expect(current_path).to eq(book_path(bk_1))
     end
   end
+
+  context 'visiting book show page' do
+    it 'will see the book title and a list of reviews for the book' do
+      user = User.create(name: 'joe')
+      bk_1 = Book.create(title: 'sdfg')
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book' )
+
+      visit book_path(bk_1)
+
+      expect(page).to have_content(bk_1.title)
+      expect(page).to have_content(review.user.id)
+      expect(page).to have_content(review.body)
+    end
+  end
 end
 
 =begin
 As a Visitor,
-When I visit a book index page,
-I see all book titles in the database,
-And each book title is a link to that book's show page.
+When I visit a book show page,
+I see the book title and a list of reviews for that book.
+The review shown should include the text of the review, and user who wrote the review.
 =end
