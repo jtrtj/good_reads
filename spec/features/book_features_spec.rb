@@ -47,7 +47,7 @@ end
 =begin
 As a Visitor,
 When I visit a book show page,
-I see the average rating for that book.
+I see a heading that includes the highest rating for that book.
 
-(e.g "Average Rating: 3.5")
+(e.g "Highest Rating: 4").
 =end
