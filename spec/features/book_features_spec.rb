@@ -58,7 +58,9 @@ end
 =begin
 As a Visitor,
 When I visit a book show page,
-I see a heading that includes the highest rating for that book.
+under the heading for highest rating,
+I see the review text, and the name of the reviewer
+that submitted that review.
 
-(e.g "Highest Rating: 4").
+(it's okay if the review is also listed again on the page later with all other reviews)
 =end
