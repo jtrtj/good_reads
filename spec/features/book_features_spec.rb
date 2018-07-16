@@ -41,6 +41,17 @@ describe 'visitor' do
 
       expect(page).to have_content("Average Rating: 4")
     end
+
+    it 'will see the highest rating for that book' do
+      user = User.create(name: 'joe')
+      bk_1 = Book.create(title: 'sdfg')
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book', rating: 5)
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book', rating: 3)
+
+      visit book_path(bk_1)
+
+      expect(page).to have_content("Highest Rating: 5")
+    end
   end
 end
 
