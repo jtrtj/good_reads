@@ -4,6 +4,8 @@ class BooksController < ApplicationController
   end
   
   def show
-    @book = Book.includes(:reviews).find(params[:id])
+    @book = Book.find(params[:id])
+    @highest_review = @book.highest_review
+    @lowest_review = @book.lowest_review
   end
 end

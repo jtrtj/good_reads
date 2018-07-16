@@ -21,6 +21,4 @@ class Book < ApplicationRecord
   def lowest_rating
     reviews.minimum(:rating)
   end
-
-
 end
