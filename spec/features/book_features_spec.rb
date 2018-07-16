@@ -21,13 +21,25 @@ describe 'visitor' do
     it 'will see the book title and a list of reviews for the book' do
       user = User.create(name: 'joe')
       bk_1 = Book.create(title: 'sdfg')
-      review = user.reviews.create(book_id: bk_1.id, body: 'great book' )
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book', rating: 5)
 
       visit book_path(bk_1)
 
       expect(page).to have_content(bk_1.title)
       expect(page).to have_content("User: #{review.user.name}")
       expect(page).to have_content("Review: #{review.body}")
+      expect(page).to have_content("Rating: #{review.rating}")
+    end
+
+    it 'will see the average rating for that book' do
+      user = User.create(name: 'joe')
+      bk_1 = Book.create(title: 'sdfg')
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book', rating: 5)
+      review = user.reviews.create(book_id: bk_1.id, body: 'great book', rating: 3)
+
+      visit book_path(bk_1)
+
+      expect(page).to have_content("Average Rating: 4")
     end
   end
 end
@@ -35,6 +47,7 @@ end
 =begin
 As a Visitor,
 When I visit a book show page,
-I see the book title and a list of reviews for that book.
-The review shown should include the text of the review, and user who wrote the review.
+I see the average rating for that book.
+
+(e.g "Average Rating: 3.5")
 =end
