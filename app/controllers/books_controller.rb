@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   end
   
   def show
-    @book = Book.find(params[:id])
-    @reviews = Review.where(book_id: params[:id])
+    @book = Book.includes(:reviews).find(params[:id])
   end
 end
